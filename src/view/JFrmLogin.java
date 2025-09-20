@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Usuarios;
-import dao.UsuariosDao;
 import java.awt.Color;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -129,9 +127,8 @@ public class JFrmLogin extends javax.swing.JFrame {
         String user = jTxtUsuario.getText();
         String pass = new String(jPswSenha.getPassword());
    
-        UsuariosDao usuariosdao = new UsuariosDao();
 
-        if (usuariosdao.autenticar(user, pass)) {
+        if (user == "fernando" && pass == "12345") {
             JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
             new JFrmPrincipal().setVisible(true);
             this.dispose();

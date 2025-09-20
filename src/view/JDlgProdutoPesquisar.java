@@ -4,8 +4,7 @@
  */
 package view;
 
-import bean.Produto;
-import dao.ProdutoDao;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,22 +17,16 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgProdutoPesquisar
      */
-    JDlgProduto jDlgProduto;
-    ControllerProduto controllerProduto;
+    Fhf_JDlgProduto jDlgProduto;
     
     public JDlgProdutoPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        ProdutoDao produtoDao = new ProdutoDao();
-        List lista = (List) produtoDao.listAll();
-        controllerProduto = new ControllerProduto();
-        controllerProduto.setLista(lista);
-        jTable1.setModel(controllerProduto);
     }
 
     
-    public void setTelaPai(JDlgProduto jDlgProduto){
+    public void setTelaPai(Fhf_JDlgProduto jDlgProduto){
         this.jDlgProduto = jDlgProduto;
     }
     /**
@@ -104,8 +97,6 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
                 JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Produto produto = (Produto) controllerProduto.getBean(linSel);
-        jDlgProduto.beanView(produto);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

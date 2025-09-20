@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Vendas;
-import dao.VendasDao;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -71,15 +69,6 @@ public class JDlgVendas extends javax.swing.JDialog {
         jTxtTotal.setText("");
     }
 
-    public void beanView(Vendas venda) {
-        jTxtCodigo.setText(String.valueOf(venda.getIdvendas()));
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        jFmtData.setText(formato.format(venda.getData()));
-        jCboCliente.setSelectedItem(null);
-        jCboVendedor.setSelectedItem(null);
-        jTxtFormaPagamento.setText(venda.getFormaPagamento());
-        jTxtTotal.setText(venda.getTotal());
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -229,31 +218,6 @@ public class JDlgVendas extends javax.swing.JDialog {
             return;
         }
 
-        Vendas venda = new Vendas();
-        int codigo = Integer.parseInt(jTxtCodigo.getText());
-        venda.setIdvendas(codigo);
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            Date dataVenda;
-        try {
-            dataVenda = formato.parse(jFmtData.getText());
-            venda.setData(dataVenda);
-        } catch (ParseException ex) {
-            Logger.getLogger(JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-
-
-        venda.setFormaPagamento(jTxtFormaPagamento.getText());
-        venda.setTotal(jTxtTotal.getText());
-
-        VendasDao vendaDao = new VendasDao();
-        if (incluir == true) {
-            vendaDao.insert(venda);
-        } else {
-            vendaDao.update(venda);
-        }
-
         habilitar(false);
         limpar();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
@@ -299,24 +263,6 @@ public class JDlgVendas extends javax.swing.JDialog {
         // TODO add your handling code here:
         int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?", "",JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-            Vendas vendas = new Vendas();
-            VendasDao vendasDao = new VendasDao();
-            vendasDao.delete(vendas);
-            int codigo = Integer.parseInt(jTxtCodigo.getText());
-            vendas.setIdvendas(codigo);
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            Date data;
-            try {
-                data = formato.parse(jFmtData.getText());
-                vendas.setData(data);
-            } catch (ParseException ex) {
-                Logger.getLogger(JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-             
-            vendas.setFormaPagamento(jTxtFormaPagamento.getText());
-            vendas.setTotal(jTxtTotal.getText());
-
-            vendasDao.delete(vendas);
             limpar();
         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed

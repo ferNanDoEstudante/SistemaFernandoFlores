@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Usuarios;
-import dao.UsuariosDao;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -320,22 +318,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         jChbxAtivo.setSelected(false);
     }
     
-    public void beanView(Usuarios usuarios){
-        jTxtCodigo.setText(String.valueOf(usuarios.getIdusuarios()));
-        jTxtNome.setText(usuarios.getNome());
-        jTxtApelido.setText(usuarios.getApelido());
-        jFTxtCPF.setText(usuarios.getCpf());
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String dataNasc = formato.format(usuarios.getDataNascimento());
-        jFTxtDatadeNascimento.setText(dataNasc);
-        jPswSenha.setText(usuarios.getSenha());
-        jCbxNivel.setSelectedIndex(usuarios.getNivel());
-        if (usuarios.getAtivo().equals("")) {
-              jChbxAtivo.setSelected(false);
-           } else {
-               jChbxAtivo.setSelected(true);
-           }
-    }
+   
     private void jFTxtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTxtCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFTxtCPFActionPerformed
@@ -368,30 +351,6 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         
         int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?", "",JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-            Usuarios usuarios = new Usuarios();
-            UsuariosDao usuariosDao = new UsuariosDao();
-            usuariosDao.delete(usuarios);
-            int codigo = Integer.parseInt(jTxtCodigo.getText());
-            usuarios.setIdusuarios(codigo);
-            usuarios.setNome(jTxtNome.getText());
-            usuarios.setApelido(jTxtApelido.getText());
-            usuarios.setCpf(jFTxtCPF.getText());
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        
-        try {
-            Date dataNasc = formato.parse(jFTxtDatadeNascimento.getText());
-            usuarios.setDataNascimento(dataNasc);
-        } catch (ParseException ex) {
-            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            usuarios.setSenha(jPswSenha.getText());
-            usuarios.setNivel(jCbxNivel.getSelectedIndex());
-            if (jChbxAtivo.isSelected() == true) {
-                usuarios.setAtivo("S");
-            } else {
-                usuarios.setAtivo("N");
-            }
-            usuariosDao.delete(usuarios);
             limpar();
             }
         }
@@ -411,34 +370,6 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         return;
     }
         
-        Usuarios usuarios = new Usuarios();
-        int codigo = Integer.parseInt(jTxtCodigo.getText());
-        usuarios.setIdusuarios(codigo);
-        usuarios.setNome(jTxtNome.getText());
-        usuarios.setApelido(jTxtApelido.getText());
-        usuarios.setCpf(jFTxtCPF.getText());
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        
-        try {
-            Date dataNasc = formato.parse(jFTxtDatadeNascimento.getText());
-            usuarios.setDataNascimento(dataNasc);
-        } catch (ParseException ex) {
-            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        usuarios.setSenha(jPswSenha.getText());
-        usuarios.setNivel(jCbxNivel.getSelectedIndex());
-        if (jChbxAtivo.isSelected() == true) {
-            usuarios.setAtivo("S");
-        } else {
-            usuarios.setAtivo("N");
-        }
-
-        UsuariosDao usuariosDao = new UsuariosDao();
-        if(incluir == true){
-            usuariosDao.insert(usuarios);
-        } else{
-            usuariosDao.update(usuarios);
-        }
         habilitar(false);
         limpar();
         pesquisano = false;

@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Clientes;
-import dao.ClientesDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -13,26 +11,20 @@ import javax.swing.JOptionPane;
  *
  * @author User
  */
-public class JDlgClientePesquisar extends javax.swing.JDialog {
+public class Fhf_JDlgClientePesquisar extends javax.swing.JDialog {
 
     
     
-    JDlgCliente jDlgCliente;
-    ControllerCliente controllerCliente;
+    Fhf_JDlgCliente jDlgCliente;
     /**
      * Creates new form JDlgClientePesquisar
      */
-    public JDlgClientePesquisar(java.awt.Frame parent, boolean modal) {
+    public Fhf_JDlgClientePesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        ClientesDao clientesDao = new ClientesDao();
-        List lista = (List) clientesDao.listAll();
-        controllerCliente = new ControllerCliente();
-        controllerCliente.setLista(lista);
-        jTable1.setModel(controllerCliente);
     }
-    public void setTelaPai(JDlgCliente jDlgCliente){
+    public void setTelaPai(Fhf_JDlgCliente jDlgCliente){
         this.jDlgCliente = jDlgCliente;
     }
     
@@ -103,8 +95,6 @@ public class JDlgClientePesquisar extends javax.swing.JDialog {
                 JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Clientes clientes = (Clientes) controllerCliente.getBean(linSel);
-        jDlgCliente.beanView(clientes);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
@@ -125,20 +115,21 @@ public class JDlgClientePesquisar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgClientePesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgClientePesquisar dialog = new JDlgClientePesquisar(new javax.swing.JFrame(), true);
+                Fhf_JDlgClientePesquisar dialog = new Fhf_JDlgClientePesquisar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

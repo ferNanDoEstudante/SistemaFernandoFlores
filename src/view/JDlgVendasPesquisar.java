@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Vendas;
-import dao.VendasDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -20,17 +18,12 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
      */
     
     JDlgVendas jDlgVendas;
-    ControllerVendas controllerVendas;
+
     
     public JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        VendasDao vendasDao = new VendasDao();
-        List lista = (List) vendasDao.listAll();
-        controllerVendas = new ControllerVendas();
-        controllerVendas.setLista(lista);
-        jTable1.setModel(controllerVendas);
     }
 
     public void setTelaPai(JDlgVendas jDlgVendas){
@@ -106,8 +99,6 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
                 JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Vendas vendas = (Vendas) controllerVendas.getBean(linSel);
-        jDlgVendas.beanView(vendas);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

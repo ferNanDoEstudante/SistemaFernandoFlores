@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Vendedor;
-import dao.VendedorDao;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -271,56 +269,17 @@ public class JDlgVendedor extends javax.swing.JDialog {
         jCbxTurno.setSelectedItem("");
     }
     
-    public void beanView(Vendedor vendedor){
-        jTxtCodigo.setText(String.valueOf(vendedor.getIdvendedor()));
-        jTxtNome.setText(vendedor.getNome());
-        jFTxtCPF.setText(vendedor.getCpf());
-        jFTxtTelefone.setText(vendedor.getTelefone());
-        jCbxTurno.setSelectedIndex(vendedor.getTurno());
-        jTxtSalario.setText(vendedor.getSalario());
-        jTxtEndereco.setText(vendedor.getEndereco());
-    }
     
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?", "",JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-            Vendedor vendedor = new Vendedor();
-            VendedorDao vendedorDao = new VendedorDao();
-            vendedorDao.delete(vendedor);
-            int codigo = Integer.parseInt(jTxtCodigo.getText());
-            vendedor.setIdvendedor(codigo);
-            vendedor.setNome(jTxtNome.getText());
-            vendedor.setCpf(jFTxtCPF.getText());
-            vendedor.setTelefone(jFTxtTelefone.getText());
-            vendedor.setTurno(jCbxTurno.getSelectedIndex());
-            vendedor.setSalario(jTxtSalario.getText());
-            vendedor.setEndereco(jTxtEndereco.getText());
-            
-            vendedorDao.delete(vendedor);
             limpar();
         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        Vendedor vendedor = new Vendedor();
-        int codigo = Integer.parseInt(jTxtCodigo.getText());
-        vendedor.setIdvendedor(codigo);
-        vendedor.setNome(jTxtNome.getText());
-        vendedor.setCpf(jFTxtCPF.getText());
-        vendedor.setTelefone(jFTxtTelefone.getText());
-        vendedor.setTurno(jCbxTurno.getSelectedIndex());
-        vendedor.setSalario(jTxtSalario.getText());
-        vendedor.setEndereco(jTxtEndereco.getText());
-
-        VendedorDao vendedorDao = new VendedorDao();
-        
-        if (incluir = true){
-            vendedorDao.insert(vendedor);
-        } else {
-            vendedorDao.update(vendedor);
-        }
         habilitar(false);
         limpar();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed

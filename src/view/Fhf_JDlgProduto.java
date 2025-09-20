@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Produto;
-import dao.ProdutoDao;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,14 +16,14 @@ import javax.swing.JOptionPane;
  *
  * @author fhenr
  */
-public class JDlgProduto extends javax.swing.JDialog {
+public class Fhf_JDlgProduto extends javax.swing.JDialog {
 
     /**
-     * Creates new form JDlgProduto
+     * Creates new form Fhf_JDlgProduto
      */
     boolean incluir = false;
     boolean pesquisano = false;
-    public JDlgProduto(java.awt.Frame parent, boolean modal) {
+    public Fhf_JDlgProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Cadastro de Produtos");
@@ -213,9 +211,7 @@ public class JDlgProduto extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jFTxtDataAdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))))
+                                    .addComponent(jFTxtDataAdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,17 +295,6 @@ public class JDlgProduto extends javax.swing.JDialog {
         jFTxtDataAdicao.setText("");
     }
     
-    public void beanView(Produto produto){
-        jTxtCodigo.setText(String.valueOf(produto.getIdproduto()));
-        jTxtNome.setText(produto.getNome());
-        jTxtDescricao.setText(produto.getDescricao());
-        jFmtPreco.setText(produto.getPreco());
-        jCbxTipo.setSelectedIndex(produto.getTipo());
-        jTxtQuantidade.setText(String.valueOf(produto.getQuantidade()));
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String dataAdi = formato.format(produto.getDataAdicao());
-        jFTxtDataAdicao.setText(dataAdi);
-    }
     
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
@@ -319,20 +304,6 @@ public class JDlgProduto extends javax.swing.JDialog {
         
         int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?", "",JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-            Produto produto = new Produto();
-            ProdutoDao produtoDao = new ProdutoDao();
-            produtoDao.delete(produto);
-            int codigo = Integer.parseInt(jTxtCodigo.getText());
-            int quantidade = Integer.parseInt(jTxtQuantidade.getText());
-            produto.setIdproduto(codigo);
-            produto.setNome(jTxtNome.getText());
-            produto.setDescricao(jTxtDescricao.getText());
-            produto.setPreco(jFmtPreco.getText());
-            produto.setQuantidade(quantidade);
-            produto.setTipo(jCbxTipo.getSelectedIndex());
-            produto.setDataAdicao(null);
-            
-            produtoDao.delete(produto);
             limpar();
         }
       }
@@ -350,35 +321,6 @@ public class JDlgProduto extends javax.swing.JDialog {
         return;
     }
 
-    Produto produto = new Produto();
-    ProdutoDao produtoDao = new ProdutoDao();
-
-    int codigo = Integer.parseInt(jTxtCodigo.getText());
-    int quantidade = Integer.parseInt(jTxtQuantidade.getText());
-    produto.setIdproduto(codigo);
-    produto.setNome(jTxtNome.getText());
-    produto.setDescricao(jTxtDescricao.getText());
-    produto.setPreco(jFmtPreco.getText());
-    produto.setQuantidade(quantidade);
-    produto.setTipo(jCbxTipo.getSelectedIndex());
-
-    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-    Date dataAdicao ;
-        try {
-            dataAdicao = formato.parse(jFTxtDataAdicao.getText());
-            produto.setDataAdicao(dataAdicao);
-        } catch (ParseException ex) {
-            Logger.getLogger(JDlgProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    if (incluir == true) {
-        produtoDao.insert(produto);   
-    } else {
-        produtoDao.update(produto);
-    }
-
-
     habilitar(false);
     limpar();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
@@ -393,22 +335,6 @@ public class JDlgProduto extends javax.swing.JDialog {
         JDlgProdutoPesquisar jDlgProdutoPesquisar = new JDlgProdutoPesquisar(null, true);
         jDlgProdutoPesquisar.setTelaPai(this);
         jDlgProdutoPesquisar.setVisible(true);
-//        String id = JOptionPane.showInputDialog(null, "Entre com o código ?");
-//        int codigo = Integer.valueOf(id);
-//        ProdutoDao produtoDao = new ProdutoDao();
-//        Produto produto = (Produto) produtoDao.list(codigo);
-//        String quantidade = Integer.toString(produto.getQuantidade());
-//        if (produto == null) {
-//            JOptionPane.showMessageDialog(null, "Código não existe");
-//        } else {
-//
-//            jTxtCodigo.setText(id);
-//            jTxtNome.setText(produto.getNome());
-//            jTxtDescricao.setText(produto.getDescricao());
-//            jFmtPreco.setText(produto.getPreco());
-//            jTxtQuantidade.setText(quantidade);
-//            jCbxTipo.setSelectedIndex(produto.getTipo());
-//        }
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jBtnIncluirComponentHidden
@@ -461,20 +387,21 @@ public class JDlgProduto extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgProduto dialog = new JDlgProduto(new javax.swing.JFrame(), true);
+                Fhf_JDlgProduto dialog = new Fhf_JDlgProduto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

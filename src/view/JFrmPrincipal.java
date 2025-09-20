@@ -24,9 +24,6 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(251,250,246));
-        
-        ImagemFundoPanel painelFundo = new ImagemFundoPanel("/imagens/imagemBackPokemon2.jpg");
-        setContentPane(painelFundo);
         getContentPane().setLayout(null);
     }
 
@@ -135,7 +132,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
     private void jMnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnClienteActionPerformed
         // TODO add your handling code here:
-        JDlgCliente jDlgCliente = new JDlgCliente(null, true);
+        Fhf_JDlgCliente jDlgCliente = new Fhf_JDlgCliente(null, true);
         jDlgCliente.setVisible(true);
     }//GEN-LAST:event_jMnClienteActionPerformed
 
@@ -147,7 +144,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
     private void jMnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProdutoActionPerformed
         // TODO add your handling code here:
-        JDlgProduto jDlgProduto = new JDlgProduto(null, true);
+        Fhf_JDlgProduto jDlgProduto = new Fhf_JDlgProduto(null, true);
         jDlgProduto.setVisible(true);
     }//GEN-LAST:event_jMnProdutoActionPerformed
 
@@ -190,7 +187,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrmLogin().setVisible(true);
+                new JFrmPrincipal().setVisible(true);
             }
         });
     }

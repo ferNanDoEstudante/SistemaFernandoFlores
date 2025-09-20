@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Usuarios;
-import dao.UsuariosDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -17,7 +15,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     
     JDlgUsuarios jDlgUsuarios;
-    ControllerUsuarios controllerUsuarios;
+
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
@@ -25,11 +23,6 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        UsuariosDao usuariosDao = new UsuariosDao();
-        List lista = (List) usuariosDao.listAll();
-        controllerUsuarios = new ControllerUsuarios();
-        controllerUsuarios.setLista(lista);
-        jTable1.setModel(controllerUsuarios);
     }
     
     public void setTelaPai(JDlgUsuarios jDlgUsuarios){
@@ -106,8 +99,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
                 JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Usuarios usuarios = (Usuarios) controllerUsuarios.getBean(linSel);
-        jDlgUsuarios.beanView(usuarios);
+
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

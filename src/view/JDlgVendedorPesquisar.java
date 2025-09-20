@@ -4,8 +4,6 @@
  */
 package view;
 
-import bean.Vendedor;
-import dao.VendedorDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -19,17 +17,12 @@ public class JDlgVendedorPesquisar extends javax.swing.JDialog {
      * Creates new form JDlgVendedorPesquisar
      */
     JDlgVendedor jDlgVendedor;
-    ControllerVendedor controllerVendedor;
     
     public JDlgVendedorPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        VendedorDao vendedorDao = new VendedorDao();
-        List lista = (List) vendedorDao.listAll();
-        controllerVendedor = new ControllerVendedor();
-        controllerVendedor.setLista(lista);
-        jTable1.setModel(controllerVendedor);
+
     }
     
     public void setTelaPai(JDlgVendedor jDlgVendedor){
@@ -105,8 +98,7 @@ public class JDlgVendedorPesquisar extends javax.swing.JDialog {
                 JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Vendedor vendedor = (Vendedor) controllerVendedor.getBean(linSel);
-        jDlgVendedor.beanView(vendedor);
+
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
