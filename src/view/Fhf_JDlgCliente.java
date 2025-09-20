@@ -34,70 +34,6 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(251, 250, 246));
-        jTxtNome.setEnabled(false);
-        jTxtCodigo.setEnabled(false);
-        jTxtEmail.setEnabled(false);
-        jTxtBairro.setEnabled(false);
-        jTxtEstado.setEnabled(false);
-        jTxtEndereco.setEnabled(false);
-        jTxtCidade.setEnabled(false);
-        jFmtCelular.setEnabled(false);
-        jFmtCep.setEnabled(false);
-        jFmtCpf.setEnabled(false);
-        jFmtRg.setEnabled(false);
-        jFmtDataCadastro.setEnabled(false);
-        jFmtDatadeNascimento.setEnabled(false);
-        jCboSexo.setEnabled(false);
-        jChbxAtivo.setEnabled(false);
-        jBtnCancelar.setEnabled(false);
-        jBtnConfirmar.setEnabled(false);
-        jBtnExcluir.setEnabled(true);
-        jBtnIncluir.setEnabled(true);
-        jBtnAlterar.setEnabled(true);
-        jBtnPesquisar.setEnabled(true);
-    }
-
-    public void habilitar(boolean value) {
-
-        jTxtNome.setEnabled(value);
-        jTxtCodigo.setEnabled(value);
-        jTxtEmail.setEnabled(value);
-        jTxtBairro.setEnabled(value);
-        jTxtEstado.setEnabled(value);
-        jTxtEndereco.setEnabled(value);
-        jTxtCidade.setEnabled(value);
-        jFmtCelular.setEnabled(value);
-        jFmtCep.setEnabled(value);
-        jFmtCpf.setEnabled(value);
-        jFmtRg.setEnabled(value);
-        jFmtDataCadastro.setEnabled(value);
-        jFmtDatadeNascimento.setEnabled(value);
-        jCboSexo.setEnabled(value);
-        jChbxAtivo.setEnabled(value);
-        jBtnCancelar.setEnabled(value);
-        jBtnConfirmar.setEnabled(value);
-        jBtnExcluir.setEnabled(!value);
-        jBtnIncluir.setEnabled(!value);
-        jBtnAlterar.setEnabled(!value);
-        jBtnPesquisar.setEnabled(!value);
-    }
-
-    public void limpar() {
-        jTxtNome.setText("");
-        jTxtCodigo.setText("");
-        jTxtEmail.setText("");
-        jTxtBairro.setText("");
-        jTxtEstado.setText("");
-        jTxtEndereco.setText("");
-        jTxtCidade.setText("");
-        jFmtCelular.setText("");
-        jFmtCep.setText("");
-        jFmtCpf.setText("");
-        jFmtRg.setText("");
-        jFmtDataCadastro.setText("");
-        jFmtDatadeNascimento.setText("");
-        jCboSexo.setSelectedItem("");
-        jChbxAtivo.setSelected(false);
     }
 
     /**
@@ -156,7 +92,7 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
         jFmtCelular = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-adicionar-24.png"))); // NOI18N
@@ -180,7 +116,7 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
             }
         });
 
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-remover-23.png"))); // NOI18N
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-cancelar-24.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -500,8 +436,6 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        limpar();
-        habilitar(true);
         incluir = true;
         jTxtCodigo.grabFocus();
     }//GEN-LAST:event_jBtnIncluirActionPerformed
@@ -511,7 +445,6 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
         if (pesquisano == false) {
             JOptionPane.showMessageDialog(null, "Você precisa pesquisar um usuário antes");
         } else {
-            habilitar(true);
             jTxtCodigo.setEnabled(false);
             incluir = false;
             jTxtNome.grabFocus();
@@ -526,7 +459,6 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
 
             int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?", "", JOptionPane.YES_NO_OPTION);
             if (resp == JOptionPane.YES_OPTION) {
-                limpar();
             }
         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
@@ -545,14 +477,11 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
             return;
         }
 
-        habilitar(false);
-        limpar();
         pesquisano = false;
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
  *
  * @author User
  */
-public class JDlgVendas extends javax.swing.JDialog {
+public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     /**
-     * Creates new form JDlgVendas
+     * Creates new form Fhf_JDlgVendas
      */
     boolean incluir = false;
     boolean pesquisano = false;
-    public JDlgVendas(java.awt.Frame parent, boolean modal) {
+    public Fhf_JDlgVendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Cadastro de Vendas");
@@ -229,7 +229,7 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-        JDlgVendasPesquisar jDlgVendasPesquisar = new JDlgVendasPesquisar(null, true);
+        Fhf_JDlgVendasPesquisar jDlgVendasPesquisar = new Fhf_JDlgVendasPesquisar(null, true);
         jDlgVendasPesquisar.setTelaPai(this);
         jDlgVendasPesquisar.setVisible(true);
         pesquisano = true;
@@ -284,20 +284,21 @@ public class JDlgVendas extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgVendas dialog = new JDlgVendas(new javax.swing.JFrame(), true);
+                Fhf_JDlgVendas dialog = new Fhf_JDlgVendas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

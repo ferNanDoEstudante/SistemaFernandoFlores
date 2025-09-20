@@ -4,33 +4,32 @@
  */
 package view;
 
+
 import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author User
+ * @author u06739637130
  */
-public class JDlgVendasPesquisar extends javax.swing.JDialog {
+public class Fhf_JDlgProdutoPesquisar extends javax.swing.JDialog {
 
     /**
-     * Creates new form JDlgVendasPesquisar
+     * Creates new form Fhf_JDlgProdutoPesquisar
      */
+    Fhf_JDlgProduto jDlgProduto;
     
-    JDlgVendas jDlgVendas;
-
-    
-    public JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
+    public Fhf_JDlgProdutoPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Pesquisando Produtos");
     }
 
-    public void setTelaPai(JDlgVendas jDlgVendas){
-        this.jDlgVendas = jDlgVendas;
+    
+    public void setTelaPai(Fhf_JDlgProduto jDlgProduto){
+        this.jDlgProduto = jDlgProduto;
     }
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,12 +73,12 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnOk)
-                .addContainerGap())
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnOk)
                 .addContainerGap())
@@ -89,16 +88,7 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        // TODO add your handling code here:
-        int linSel = jTable1.getSelectedRow();
-        
-        if (linSel == -1) {
-            JOptionPane.showMessageDialog(this, 
-                "Nada selecionado!", 
-                "Atenção", 
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
@@ -119,20 +109,21 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProdutoPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProdutoPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProdutoPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgVendasPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fhf_JDlgProdutoPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgVendasPesquisar dialog = new JDlgVendasPesquisar(new javax.swing.JFrame(), true);
+                Fhf_JDlgProdutoPesquisar dialog = new Fhf_JDlgProdutoPesquisar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -332,7 +332,7 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-        JDlgProdutoPesquisar jDlgProdutoPesquisar = new JDlgProdutoPesquisar(null, true);
+        Fhf_JDlgProdutoPesquisar jDlgProdutoPesquisar = new Fhf_JDlgProdutoPesquisar(null, true);
         jDlgProdutoPesquisar.setTelaPai(this);
         jDlgProdutoPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed

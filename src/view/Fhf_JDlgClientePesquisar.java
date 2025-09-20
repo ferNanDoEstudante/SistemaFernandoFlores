@@ -23,6 +23,7 @@ public class Fhf_JDlgClientePesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Pesquisando Clientes");
     }
     public void setTelaPai(Fhf_JDlgCliente jDlgCliente){
         this.jDlgCliente = jDlgCliente;
@@ -86,15 +87,7 @@ public class Fhf_JDlgClientePesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        int linSel = jTable1.getSelectedRow();
-        
-        if (linSel == -1) {
-            JOptionPane.showMessageDialog(this, 
-                "Nada selecionado!", 
-                "Atenção", 
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
