@@ -262,13 +262,13 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
         incluir = true;
         Util.habilitar( true, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataDeNascimento, jPwfSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jCboNivel, jFmtCpf, jChbAtivo, jFmtDataDeNascimento);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jCboNivel, jFmtCpf, jChbAtivo, jFmtDataDeNascimento, jPwfSenha);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         if (pesquisano == false) {
-            JOptionPane.showMessageDialog(null, "Você precisa pesquisar um usuário antes");
+            Util.mensagem("Você precisa pesquisar um usuário primeiro");
         } else {
             Util.habilitar( true, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataDeNascimento, jPwfSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
             Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
@@ -280,9 +280,10 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         if (pesquisano == false) {
-            JOptionPane.showMessageDialog(null, "Você precisa pesquisar um usuário antes");
+            Util.mensagem("Você precisa pesquisar um usuário primeiro");
         } else {
-            Util.perguntar("Deseja excluir o registro?");
+                Util.perguntar("Você deseja excluir?");
+                Util.limpar(jTxtNome, jTxtCodigo, jTxtNome, jTxtApelido, jFmtDataDeNascimento, jFmtCpf, jCboNivel, jChbAtivo, jPwfSenha);  
         }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -295,7 +296,7 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
                 || jFmtDataDeNascimento.getText().contains(" ")
                 || jPwfSenha.getText().equals("")) {
 
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
+            Util.mensagem("Preencha todos os campos obrigatórios!");
             return;
         }
         Util.habilitar( false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataDeNascimento, jPwfSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
@@ -307,7 +308,7 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
         Util.habilitar( false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataDeNascimento, jPwfSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jCboNivel, jFmtCpf, jChbAtivo, jFmtDataDeNascimento);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jCboNivel, jFmtCpf, jChbAtivo, jFmtDataDeNascimento, jPwfSenha);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

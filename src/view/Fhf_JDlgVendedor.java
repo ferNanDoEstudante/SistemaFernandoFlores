@@ -7,6 +7,7 @@ package view;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import tools.Util;
 
 /**
  *
@@ -25,19 +26,7 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
         setTitle("Cadastro de Vendedor");
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(251,250,246));
-        jTxtNome.setEnabled(false);
-        jCbxTurno.setEnabled(false);
-        jFTxtCPF.setEnabled(false);
-        jTxtSalario.setEnabled(false);
-        jTxtCodigo.setEnabled(false);
-        jBtnCancelar.setEnabled(false);
-        jBtnConfirmar.setEnabled(false);
-        jFTxtTelefone.setEnabled(false);
-        jTxtEndereco.setEnabled(false);
-        jBtnExcluir.setEnabled(true);
-        jBtnIncluir.setEnabled(true);
-        jBtnAlterar.setEnabled(true);
-        jBtnPesquisar.setEnabled(true);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone, jBtnConfirmar, jBtnCancelar);
     }
 
     /**
@@ -237,56 +226,34 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
                     .addComponent(jBtnConfirmar)
                     .addComponent(jBtnCancelar)
                     .addComponent(jBtnPesquisar))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void habilitar(boolean value){
-        jTxtNome.setEnabled(value);
-        jCbxTurno.setEnabled(value);
-        jFTxtCPF.setEnabled(value);
-        jTxtSalario.setEnabled(value);
-        jTxtCodigo.setEnabled(value);
-        jBtnCancelar.setEnabled(value);
-        jBtnConfirmar.setEnabled(value);
-        jFTxtTelefone.setEnabled(value);
-        jTxtEndereco.setEnabled(value);
-        jBtnExcluir.setEnabled(!value);
-        jBtnIncluir.setEnabled(!value);
-        jBtnAlterar.setEnabled(!value);
-        jBtnPesquisar.setEnabled(!value);
-    }
     
-    public void limpar(){
-        jTxtNome.setText("");
-        jFTxtCPF.setText("");
-        jTxtCodigo.setText("");
-        jTxtEndereco.setText("");
-        jTxtSalario.setText("");
-        jFTxtTelefone.setText("");
-        jCbxTurno.setSelectedItem("");
-    }
     
     
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?", "",JOptionPane.YES_NO_OPTION);
-        if (resp == JOptionPane.YES_OPTION) {
-            limpar();
-        }
+        Util.perguntar("Você deseja excluir?");
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone);
+        
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
-        limpar();
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -302,13 +269,17 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
+        Util.habilitar(true, jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone);
         incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
+        Util.habilitar(true, jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone);
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

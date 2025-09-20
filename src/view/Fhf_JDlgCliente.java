@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import tools.Util;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(251, 250, 246));
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtEmail, jFmtCpf, jFmtRg, jCboSexo, jFmtDatadeNascimento, jFmtDataCadastro, jFmtCep, jFmtCelular, jChbxAtivo, jTxtEndereco, jBtnCancelar, jBtnConfirmar, jTxtBairro, jTxtCidade, jTxtEstado);
     }
 
     /**
@@ -277,7 +279,7 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("(Digite seu CEP e aperte 'enter' para preenchimento automático)");
+        jLabel6.setText("(CEP automático em manutenção)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -438,6 +440,9 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         incluir = true;
         jTxtCodigo.grabFocus();
+         Util.habilitar(true, jTxtCodigo, jTxtNome, jTxtEmail, jFmtCpf, jFmtRg, jCboSexo, jFmtDatadeNascimento, jFmtDataCadastro, jFmtCep, jFmtCelular, jChbxAtivo, jTxtEndereco, jBtnCancelar, jBtnConfirmar, jTxtBairro, jTxtCidade, jTxtEstado);
+         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+         Util.limpar(jTxtCodigo, jTxtNome, jTxtEmail, jFmtCpf, jFmtRg, jCboSexo, jFmtDatadeNascimento, jFmtDataCadastro, jFmtCep, jFmtCelular, jChbxAtivo, jTxtEndereco, jTxtBairro, jTxtCidade, jTxtEstado);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -446,6 +451,8 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Você precisa pesquisar um usuário antes");
         } else {
             jTxtCodigo.setEnabled(false);
+            Util.habilitar(true, jTxtNome, jTxtEmail, jFmtCpf, jFmtRg, jCboSexo, jFmtDatadeNascimento, jFmtDataCadastro, jFmtCep, jFmtCelular, jChbxAtivo, jTxtEndereco, jBtnCancelar, jBtnConfirmar, jTxtBairro, jTxtCidade, jTxtEstado);
+            Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
             incluir = false;
             jTxtNome.grabFocus();
         }
@@ -476,12 +483,17 @@ public class Fhf_JDlgCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
             return;
         }
-
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtEmail, jFmtCpf, jFmtRg, jCboSexo, jFmtDatadeNascimento, jFmtDataCadastro, jFmtCep, jFmtCelular, jChbxAtivo, jTxtEndereco, jBtnCancelar, jBtnConfirmar, jTxtBairro, jTxtCidade, jTxtEstado);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         pesquisano = false;
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtEmail, jFmtCpf, jFmtRg, jCboSexo, jFmtDatadeNascimento, jFmtDataCadastro, jFmtCep, jFmtCelular, jChbxAtivo, jTxtEndereco, jBtnCancelar, jBtnConfirmar, jTxtBairro, jTxtCidade, jTxtEstado);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtEmail, jFmtCpf, jFmtRg, jCboSexo, jFmtDatadeNascimento, jFmtDataCadastro, jFmtCep, jFmtCelular, jChbxAtivo, jTxtEndereco, jTxtBairro, jTxtCidade, jTxtEstado);
+        
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

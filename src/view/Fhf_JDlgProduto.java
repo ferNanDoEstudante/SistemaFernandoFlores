@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import tools.Util;
 
 /**
  *
@@ -29,19 +30,7 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
         setTitle("Cadastro de Produtos");
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(251,250,246));
-        jTxtNome.setEnabled(false);
-        jFmtPreco.setEnabled(false);
-        jTxtCodigo.setEnabled(false);
-        jTxtDescricao.setEnabled(false);
-        jTxtQuantidade.setEnabled(false);
-        jCbxTipo.setEnabled(false);
-        jFTxtDataAdicao.setEnabled(false);
-        jBtnCancelar.setEnabled(false);
-        jBtnConfirmar.setEnabled(false);
-        jBtnExcluir.setEnabled(true);
-        jBtnIncluir.setEnabled(true);
-        jBtnAlterar.setEnabled(true);
-        jBtnPesquisar.setEnabled(true);
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
     }
 
     /**
@@ -269,43 +258,15 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void habilitar(boolean value){
-        jTxtNome.setEnabled(value);
-        jFmtPreco.setEnabled(value);
-        jTxtCodigo.setEnabled(value);
-        jTxtDescricao.setEnabled(value);
-        jTxtQuantidade.setEnabled(value);
-        jCbxTipo.setEnabled(value);
-        jFTxtDataAdicao.setEnabled(value);
-        jBtnCancelar.setEnabled(value);
-        jBtnConfirmar.setEnabled(value);
-        jBtnExcluir.setEnabled(!value);
-        jBtnIncluir.setEnabled(!value);
-        jBtnAlterar.setEnabled(!value);
-        jBtnPesquisar.setEnabled(!value);
-    }
-    
-    public void limpar(){
-        jTxtNome.setText("");
-        jFmtPreco.setText("");
-        jTxtCodigo.setText("");
-        jTxtDescricao.setText("");
-        jTxtQuantidade.setText("");
-        jCbxTipo.setSelectedItem("");
-        jFTxtDataAdicao.setText("");
-    }
-    
+
     
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         if (pesquisano == false){
-            JOptionPane.showMessageDialog(null, "Você precisa pesquisar um usuário antes");
+            Util.mensagem("Você precisa pesquisar um usuário primeiro");
         }else{
-        
-        int resp = JOptionPane.showConfirmDialog(null, "Confirma Exclusão ?", "",JOptionPane.YES_NO_OPTION);
-        if (resp == JOptionPane.YES_OPTION) {
-            limpar();
-        }
+            Util.perguntar("Você deseja excluir?");
+            Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco);
       }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -317,17 +278,20 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
         jFmtPreco.getText().equals("") ||
         jTxtQuantidade.getText().equals("")) {
 
-        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos corretamente.");
+        Util.mensagem("Todos os campos devem ser preenchidos corretamente.");
         return;
     }
 
-    habilitar(false);
-    limpar();
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -335,6 +299,7 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
         Fhf_JDlgProdutoPesquisar jDlgProdutoPesquisar = new Fhf_JDlgProdutoPesquisar(null, true);
         jDlgProdutoPesquisar.setTelaPai(this);
         jDlgProdutoPesquisar.setVisible(true);
+        pesquisano = true;
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jBtnIncluirComponentHidden
@@ -344,22 +309,26 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        if(pesquisano == false){
-            JOptionPane.showMessageDialog(null, "Você precisa pesquisar um usuário antes");
-        } else{
-        habilitar(true);
-        jTxtCodigo.setEnabled(false);
+        
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         incluir = false;
-        jTxtNome.grabFocus();
-        }
+        pesquisano = false;
+        
         
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
-        incluir = false;
-        pesquisano = false;
+        if(pesquisano == false){
+            Util.mensagem("Você precisa pesquisar um usuário primeiro");
+        } else{
+            Util.habilitar(true, jTxtNome, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
+            Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+            pesquisano = true;
+            incluir = false;
+        }
+       
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jFTxtDataAdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTxtDataAdicaoActionPerformed
