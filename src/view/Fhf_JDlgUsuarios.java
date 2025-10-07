@@ -5,6 +5,8 @@
  */
 package view;
 
+import bean.FhfUsuarios;
+import dao.UsuariosDAO;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import tools.Util;
@@ -27,9 +29,41 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
         setTitle("Cadastro de Usuários");
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(251,250,246));
-        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataDeNascimento, jPwfSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataDeNascimento, 
+                jPwfSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
     }
 
+     public FhfUsuarios viewBean() {
+        FhfUsuarios usuarios = new FhfUsuarios();
+        int codigo = Util.strToInt(jTxtCodigo.getText());
+        usuarios.setFhfIdUsuarios(codigo);
+        usuarios.setFhfNome(jTxtNome.getText());
+        usuarios.setFhfApelido(jTxtApelido.getText());
+        usuarios.setFhfCpf(jFmtCpf.getText());
+        usuarios.setFhfDataNascimento(Util.strToDate(jFmtDataDeNascimento.getText()));
+        usuarios.setFhfSenha(jPwfSenha.getText());
+        usuarios.setFhfNivel(jCboNivel.getSelectedIndex());
+        if (jChbAtivo.isSelected() == true) {
+            usuarios.setFhfAtivo("S");
+        } else {
+            usuarios.setFhfAtivo("N");
+        }
+        return usuarios;
+    }
+    public void beanView(FhfUsuarios usuarios) {
+        jTxtCodigo.setText(Util.intToStr(usuarios.getFhfIdUsuarios()));
+        jTxtNome.setText(usuarios.getFhfNome());
+        jTxtApelido.setText(usuarios.getFhfApelido());
+        jFmtCpf.setText(usuarios.getFhfCpf());
+        jFmtDataDeNascimento.setText(Util.dateToStr(usuarios.getFhfDataNascimento()));
+        jPwfSenha.setText(usuarios.getFhfSenha());
+        jCboNivel.setSelectedIndex(usuarios.getFhfNivel());
+        if (usuarios.getFhfAtivo().equals("S") == true) {
+            jChbAtivo.setSelected(true);
+        } else {
+            jChbAtivo.setSelected(false);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -279,12 +313,14 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if (pesquisano == false) {
-            Util.mensagem("Você precisa pesquisar um usuário primeiro");
-        } else {
-                Util.perguntar("Você deseja excluir?");
-                Util.limpar(jTxtNome, jTxtCodigo, jTxtNome, jTxtApelido, jFmtDataDeNascimento, jFmtCpf, jCboNivel, jChbAtivo, jPwfSenha);  
+        if (Util.perguntar("Deseja Excluir?") == true) {
+            UsuariosDAO usuariosDAO = new UsuariosDAO();
+            usuariosDAO.delete(viewBean());
+
         }
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido,
+                jFmtCpf, jFmtDataDeNascimento, jPwfSenha,
+                jCboNivel, jChbAtivo);
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -299,6 +335,8 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
             Util.mensagem("Preencha todos os campos obrigatórios!");
             return;
         }
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        usuariosDAO.insert(viewBean());
         Util.habilitar( false, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf, jFmtDataDeNascimento, jPwfSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         pesquisano = false;
