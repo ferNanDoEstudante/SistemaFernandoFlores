@@ -22,9 +22,9 @@ public class FhfVendasproduto  implements java.io.Serializable {
 
      private String fhfIdVendaproduto;
      private FhfProduto fhfProduto;
-     private FhfVendas fhfVendas;
      private int fhfQuantidade;
      private double fhfPrecoUnitario;
+     private double fhfTotal;
 
     public FhfVendasproduto() {
     }
@@ -33,12 +33,12 @@ public class FhfVendasproduto  implements java.io.Serializable {
     public FhfVendasproduto(String fhfIdVendaproduto) {
         this.fhfIdVendaproduto = fhfIdVendaproduto;
     }
-    public FhfVendasproduto(String fhfIdVendaproduto, FhfProduto fhfProduto, FhfVendas fhfVendas, int fhfQuantidade, double fhfPrecoUnitario) {
+    public FhfVendasproduto(String fhfIdVendaproduto, FhfProduto fhfProduto, int fhfQuantidade, double fhfPrecoUnitario, double fhfTotal) {
        this.fhfIdVendaproduto = fhfIdVendaproduto;
        this.fhfProduto = fhfProduto;
-       this.fhfVendas = fhfVendas;
        this.fhfQuantidade = fhfQuantidade;
        this.fhfPrecoUnitario = fhfPrecoUnitario;
+       this.fhfTotal = fhfTotal;
     }
    
      @Id 
@@ -63,16 +63,6 @@ public class FhfVendasproduto  implements java.io.Serializable {
         this.fhfProduto = fhfProduto;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fhf_fkidVendas")
-    public FhfVendas getFhfVendas() {
-        return this.fhfVendas;
-    }
-    
-    public void setFhfVendas(FhfVendas fhfVendas) {
-        this.fhfVendas = fhfVendas;
-    }
-
     
     @Column(name="fhf_quantidade")
     public int getFhfQuantidade() {
@@ -92,8 +82,15 @@ public class FhfVendasproduto  implements java.io.Serializable {
     public void setFhfPrecoUnitario(double fhfPrecoUnitario) {
         this.fhfPrecoUnitario = fhfPrecoUnitario;
     }
-
-
+    
+    @Column(name="fhf_precoUnitario", precision=10)
+    public double getFhfTotal() {
+        return this.fhfTotal;
+    }
+    
+    public void setFhfTotal(double fhfTotal) {
+        this.fhfTotal = fhfTotal;
+    }
 
 
 }

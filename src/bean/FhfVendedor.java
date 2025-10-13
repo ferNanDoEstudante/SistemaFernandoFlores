@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -22,7 +23,7 @@ public class FhfVendedor implements java.io.Serializable {
      private String fhfNome;
      private String fhfCpf;
      private String fhfTelefone;
-     private String fhfTurno;
+     private int fhfTurno;
      private double fhfSalario;
      private String fhfEndereco;
 
@@ -30,7 +31,7 @@ public class FhfVendedor implements java.io.Serializable {
     }
 
 	
-    public FhfVendedor(int fhfIdVendedor, String fhfNome, String fhfCpf, String fhfTelefone, String fhfTurno, double fhfSalario, String fhfEndereco) {
+    public FhfVendedor(int fhfIdVendedor, String fhfNome, String fhfCpf, String fhfTelefone, int fhfTurno, double fhfSalario, String fhfEndereco) {
         this.fhfIdVendedor = fhfIdVendedor;
         this.fhfNome = fhfNome;
         this.fhfCpf = fhfCpf;
@@ -41,6 +42,7 @@ public class FhfVendedor implements java.io.Serializable {
     }
     
     @Column(name="fhf_idVendedor", unique=true, nullable=false)
+     @Id
     public int getFhfIdVendedor() {
         return this.fhfIdVendedor;
     }
@@ -81,11 +83,11 @@ public class FhfVendedor implements java.io.Serializable {
 
     
     @Column(name="fhf_turno", nullable=false, length=12)
-    public String getFhfTurno() {
+    public int getFhfTurno() {
         return this.fhfTurno;
     }
     
-    public void setFhfTurno(String fhfTurno) {
+    public void setFhfTurno(int fhfTurno) {
         this.fhfTurno = fhfTurno;
     }
 

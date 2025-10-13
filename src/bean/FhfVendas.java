@@ -32,6 +32,9 @@ public class FhfVendas implements java.io.Serializable {
      private String fhfFormaPagamento;
      private double fhfTotal;
 
+    public FhfVendas() {
+    }
+
 	
     public FhfVendas(FhfClientes fhfClientes, FhfVendedor fhfVendedor, Date fhfData, String fhfFormaPagamento, double fhfTotal) {
        this.fhfClientes = fhfClientes;

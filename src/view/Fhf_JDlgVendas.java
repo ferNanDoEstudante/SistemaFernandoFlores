@@ -66,6 +66,9 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         jBtnIncluir = new javax.swing.JButton();
         jBtnAlterar = new javax.swing.JButton();
         jBtnExcluir = new javax.swing.JButton();
+        jBtnIncluirProd = new javax.swing.JButton();
+        jBtnAlterarProd = new javax.swing.JButton();
+        jBtnExcluirProd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,11 +99,11 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
         jLabel5.setText("Forma de Pagamento");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 6, -1, -1));
-        getContentPane().add(jTxtFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 28, 122, -1));
+        getContentPane().add(jTxtFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 28, 122, 20));
 
         jLabel6.setText("Total");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(661, 6, -1, -1));
-        getContentPane().add(jTxtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(661, 28, 118, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
+        getContentPane().add(jTxtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 100, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,7 +118,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 720, 360));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 670, 360));
 
         jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-selecionado-24.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
@@ -175,6 +178,15 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jBtnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, -1, -1));
+
+        jBtnIncluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-adicionar-24.png"))); // NOI18N
+        getContentPane().add(jBtnIncluirProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 40, -1));
+
+        jBtnAlterarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-substituir-24.png"))); // NOI18N
+        getContentPane().add(jBtnAlterarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, 40, -1));
+
+        jBtnExcluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-remover-23.png"))); // NOI18N
+        getContentPane().add(jBtnExcluirProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, 40, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -288,10 +300,13 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAlterar;
+    private javax.swing.JButton jBtnAlterarProd;
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnConfirmar;
     private javax.swing.JButton jBtnExcluir;
+    private javax.swing.JButton jBtnExcluirProd;
     private javax.swing.JButton jBtnIncluir;
+    private javax.swing.JButton jBtnIncluirProd;
     private javax.swing.JButton jBtnPesquisar;
     private javax.swing.JComboBox<String> jCboCliente;
     private javax.swing.JComboBox<String> jCboVendedor;
