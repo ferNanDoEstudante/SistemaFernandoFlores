@@ -451,7 +451,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="(CEP autom&#xe1;tico em manuten&#xe7;&#xe3;o)"/>
+        <Property name="text" type="java.lang.String" value="(Digite seu CEP e aperte enter)"/>
       </Properties>
     </Component>
   </SubComponents>
