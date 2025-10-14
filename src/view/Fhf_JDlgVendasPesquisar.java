@@ -100,7 +100,7 @@ public class Fhf_JDlgVendasPesquisar extends javax.swing.JDialog {
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
 
         FhfVendas vendas = controllerVendas.getBean(jTable1.getSelectedRow());
-        jDlgVendas.beanView(controllerVendas);
+        jDlgVendas.beanView(vendas);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

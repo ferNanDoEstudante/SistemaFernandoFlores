@@ -110,7 +110,11 @@ public class FhfVendedor implements java.io.Serializable {
     public void setFhfEndereco(String fhfEndereco) {
         this.fhfEndereco = fhfEndereco;
     }
-
+    
+     @Override
+    public String toString() {
+        return this.fhfNome;
+    }
 }
 
 

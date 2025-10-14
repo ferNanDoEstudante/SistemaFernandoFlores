@@ -210,7 +210,11 @@ public class FhfClientes  implements java.io.Serializable {
     public void setFhfAtivo(String fhfAtivo) {
         this.fhfAtivo = fhfAtivo;
     }
-
+    
+     @Override
+    public String toString() {
+        return this.fhfNome;
+    }
 }
 
 
