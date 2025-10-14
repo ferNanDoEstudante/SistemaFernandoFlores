@@ -4,6 +4,9 @@
  */
 package view;
 
+import bean.FhfUsuarios;
+import dao.UsuariosDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +17,7 @@ public class Fhf_JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     
     Fhf_JDlgUsuarios jDlgUsuarios;
+    FhfControllerUsuarios controllerUsuarios;
 
     /**
      * Creates new form JDlgUsuariosPesquisar
@@ -23,6 +27,11 @@ public class Fhf_JDlgUsuariosPesquisar extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisando Usuários");
+        controllerUsuarios = new FhfControllerUsuarios();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List lista = (List) usuariosDAO.listAll();
+        controllerUsuarios.setList(lista);
+        jTable1.setModel(controllerUsuarios);
     }
     
     public void setTelaPai(Fhf_JDlgUsuarios jDlgUsuarios){
@@ -90,6 +99,8 @@ public class Fhf_JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
+        FhfUsuarios usuarios =  controllerUsuarios.getBean( jTable1.getSelectedRow() );
+        jDlgUsuarios.beanView(usuarios);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.FhfVendedor;
+import dao.VendedorDAO;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
      */
     
     boolean incluir = false;
+    boolean pesquisar = false;
     public Fhf_JDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -232,12 +235,35 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    public FhfVendedor viewBean() {
+        FhfVendedor vendedor = new FhfVendedor();
+        int codigo = Util.strToInt(jTxtCodigo.getText());
+        vendedor.setFhfIdVendedor(codigo);
+        vendedor.setFhfNome(jTxtNome.getText());
+        vendedor.setFhfCpf(jFTxtCPF.getText());
+        vendedor.setFhfTelefone(jFTxtTelefone.getText());
+        vendedor.setFhfSalario(Util.strToDouble(jTxtSalario.getText()));
+        vendedor.setFhfEndereco(jTxtEndereco.getText());
+        vendedor.setFhfTurno(jCbxTurno.getSelectedIndex());
+        return vendedor;
+    }
+    public void beanView(FhfVendedor vendedor) {
+        jTxtCodigo.setText(Util.intToStr(vendedor.getFhfIdVendedor()));
+        jTxtNome.setText(vendedor.getFhfNome());
+        jFTxtCPF.setText(vendedor.getFhfCpf());
+        jFTxtTelefone.setText(vendedor.getFhfTelefone());
+        jTxtSalario.setText("");
+        jTxtEndereco.setText(vendedor.getFhfEndereco());
+        jCbxTurno.setSelectedIndex(vendedor.getFhfTurno());
+    }
     
     
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        Util.perguntar("Você deseja excluir?");
+        if(Util.perguntar("Deseja excluir?") == true){
+            VendedorDAO vendedorDAO = new VendedorDAO();
+            vendedorDAO.delete(viewBean());
+        }
         Util.limpar(jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone);
         
     }//GEN-LAST:event_jBtnExcluirActionPerformed
@@ -247,6 +273,12 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
         Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtNome, jTxtEndereco, jTxtSalario, jCbxTurno, jFTxtCPF, jFTxtTelefone);
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        if(incluir == true){
+            vendedorDAO.insert(viewBean());
+        } else{
+            vendedorDAO.update(viewBean());
+        }
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

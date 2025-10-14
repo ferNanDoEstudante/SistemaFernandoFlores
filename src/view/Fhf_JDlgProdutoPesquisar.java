@@ -5,6 +5,8 @@
 package view;
 
 
+import bean.FhfProduto;
+import dao.ProdutoDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,12 +20,18 @@ public class Fhf_JDlgProdutoPesquisar extends javax.swing.JDialog {
      * Creates new form Fhf_JDlgProdutoPesquisar
      */
     Fhf_JDlgProduto jDlgProduto;
+    FhfControllerProduto controllerProduto;
     
     public Fhf_JDlgProdutoPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisando Produtos");
+        controllerProduto = new FhfControllerProduto();
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        List lista = (List) produtoDAO.listAll();
+        controllerProduto.setList(lista);
+        jTable1.setModel(controllerProduto);
     }
 
     
@@ -89,6 +97,8 @@ public class Fhf_JDlgProdutoPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
 
+        FhfProduto produto = controllerProduto.getBean(jTable1.getSelectedRow());
+        jDlgProduto.beanView(produto);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.FhfVendedor;
+import dao.VendedorDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -17,12 +19,18 @@ public class Fhf_JDlgVendedorPesquisar extends javax.swing.JDialog {
      * Creates new form Fhf_JDlgVendedorPesquisar
      */
     Fhf_JDlgVendedor jDlgVendedor;
+    FhfControllerVendedor controllerVendedor;
     
     public Fhf_JDlgVendedorPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisando Vendedores");
+        controllerVendedor = new FhfControllerVendedor();
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        List lista = (List) vendedorDAO.listAll();
+        controllerVendedor.setList(lista);
+        jTable1.setModel(controllerVendedor);
 
     }
     
@@ -90,6 +98,8 @@ public class Fhf_JDlgVendedorPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
 
+        FhfVendedor vendedor = controllerVendedor.getBean(jTable1.getSelectedRow());
+        jDlgVendedor.beanView(vendedor);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

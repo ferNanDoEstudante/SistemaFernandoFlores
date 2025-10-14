@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.FhfClientes;
+import dao.ClientesDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -16,6 +18,7 @@ public class Fhf_JDlgClientePesquisar extends javax.swing.JDialog {
     
     
     Fhf_JDlgCliente jDlgCliente;
+    FhfControllerCliente controllerCliente;
     /**
      * Creates new form JDlgClientePesquisar
      */
@@ -24,6 +27,11 @@ public class Fhf_JDlgClientePesquisar extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisando Clientes");
+        controllerCliente = new FhfControllerCliente();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = (List) clientesDAO.listAll();
+        controllerCliente.setList(lista);
+        jTable1.setModel(controllerCliente);
     }
     public void setTelaPai(Fhf_JDlgCliente jDlgCliente){
         this.jDlgCliente = jDlgCliente;
@@ -88,6 +96,8 @@ public class Fhf_JDlgClientePesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
 
+        FhfClientes clientes = controllerCliente.getBean(jTable1.getSelectedRow());
+        jDlgCliente.beanView(clientes);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

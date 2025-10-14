@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.FhfProduto;
+import dao.ProdutoDAO;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -149,7 +151,7 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
             }
         });
 
-        jFmtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jFmtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFmtPreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtPrecoActionPerformed(evt);
@@ -260,13 +262,39 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     
+    public FhfProduto viewBean() {
+        FhfProduto produto = new FhfProduto();
+        int codigo = Util.strToInt(jTxtCodigo.getText());
+        produto.setFhfIdProduto(codigo);
+        produto.setFhfNome(jTxtNome.getText());
+        produto.setFhfDescricao(jTxtDescricao.getText());
+        produto.setFhfPreco(Util.strToDouble(jFmtPreco.getText()));
+        produto.setFhfQuantidade(Util.strToInt(jTxtQuantidade.getText()));
+        produto.setFhfDataAdicao(Util.strToDate(jFTxtDataAdicao.getText()));
+        produto.setFhfTipo(Util.intToStr(jCbxTipo.getSelectedIndex()));
+        return produto;
+    }
+    public void beanView(FhfProduto produto) {
+        jTxtCodigo.setText(Util.intToStr(produto.getFhfIdProduto()));
+        jTxtNome.setText(produto.getFhfNome());
+        jTxtDescricao.setText(produto.getFhfDescricao());
+        jFmtPreco.setText("");
+        jTxtQuantidade.setText(Util.intToStr(produto.getFhfQuantidade()));
+        jFTxtDataAdicao.setText(Util.dateToStr(produto.getFhfDataAdicao()));
+        jCbxTipo.setSelectedIndex(Util.strToInt(produto.getFhfTipo()));
+    }
+    
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
         if (pesquisano == false){
             Util.mensagem("Você precisa pesquisar um usuário primeiro");
         }else{
-            Util.perguntar("Você deseja excluir?");
-            Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco);
+                ProdutoDAO produtoDAO = new ProdutoDAO();
+            if(Util.perguntar("Deseja excluir?") == true){
+                produtoDAO.delete(viewBean());
+                Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco);
+            }
+            
       }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -281,7 +309,12 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
         Util.mensagem("Todos os campos devem ser preenchidos corretamente.");
         return;
     }
-
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        if(incluir == true){
+            produtoDAO.insert(viewBean());
+        } else{
+            produtoDAO.update(viewBean());
+        }
         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco);
@@ -312,7 +345,9 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
         
         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        incluir = false;
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco);
+        jTxtCodigo.grabFocus();
+        incluir = true;
         pesquisano = false;
         
         
@@ -325,6 +360,7 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
         } else{
             Util.habilitar(true, jTxtNome, jTxtDescricao, jTxtQuantidade, jFTxtDataAdicao, jCbxTipo, jFmtPreco, jBtnConfirmar, jBtnCancelar);
             Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+            jTxtNome.grabFocus();
             pesquisano = true;
             incluir = false;
         }
