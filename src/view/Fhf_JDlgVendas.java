@@ -5,10 +5,12 @@
 package view;
 
 import bean.FhfClientes;
+import bean.FhfProduto;
 import bean.FhfVendas;
 import bean.FhfVendedor;
 import dao.ClientesDAO;
 import dao.VendasDAO;
+import dao.VendedorDAO;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,6 +44,11 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         List lista = (List) clientesDAO.listAll();
         for (int i = 0; i < lista.size(); i++) {
             jCboCliente.addItem((FhfClientes) lista.get(i));
+        }
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        List lista2 = (List) vendedorDAO.listAll();
+        for (int i = 0; i < lista2.size(); i++) {
+            jCboVendedor.addItem((FhfProduto) lista2.get(i));
         }
     }
 
@@ -83,7 +90,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jCboCliente = new javax.swing.JComboBox<FhfClientes>();
         jLabel4 = new javax.swing.JLabel();
-        jCboVendedor = new javax.swing.JComboBox<>();
+        jCboVendedor = new javax.swing.JComboBox<FhfProduto>();
         jLabel5 = new javax.swing.JLabel();
         jTxtFormaPagamento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -128,8 +135,8 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         getContentPane().add(jCboVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 28, 113, -1));
 
         jLabel5.setText("Forma de Pagamento");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 6, -1, -1));
-        getContentPane().add(jTxtFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 28, 122, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+        getContentPane().add(jTxtFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 122, 20));
 
         jLabel6.setText("Total");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
@@ -210,6 +217,11 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         getContentPane().add(jBtnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, -1, -1));
 
         jBtnIncluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-adicionar-24.png"))); // NOI18N
+        jBtnIncluirProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnIncluirProdActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBtnIncluirProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 40, -1));
 
         jBtnAlterarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-substituir-24.png"))); // NOI18N
@@ -294,6 +306,12 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         }  
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
+    private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
+        // TODO add your handling code here:
+        Fhf_JDlgVendasProduto dlgVendasProduto = new Fhf_JDlgVendasProduto(null, true);
+        dlgVendasProduto.setVisible(true);
+    }//GEN-LAST:event_jBtnIncluirProdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,7 +366,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
     private javax.swing.JButton jBtnIncluirProd;
     private javax.swing.JButton jBtnPesquisar;
     private javax.swing.JComboBox<FhfClientes> jCboCliente;
-    private javax.swing.JComboBox<String> jCboVendedor;
+    private javax.swing.JComboBox<FhfProduto> jCboVendedor;
     private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
