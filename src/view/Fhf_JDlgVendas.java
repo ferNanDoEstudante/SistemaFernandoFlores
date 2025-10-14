@@ -75,7 +75,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         jCboCliente.setSelectedItem(vendas.getFhfClientes());
         jCboVendedor.setSelectedItem(vendas.getFhfVendedor());
         jTxtFormaPagamento.setText(vendas.getFhfFormaPagamento());
-        jTxtTotal.setText("");
+        jTxtTotal.setText(Util.doubleToStr(vendas.getFhfTotal()));
     }
 
     
@@ -136,7 +136,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
         jLabel5.setText("Forma de Pagamento");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
-        getContentPane().add(jTxtFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 122, 20));
+        getContentPane().add(jTxtFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 122, 30));
 
         jLabel6.setText("Total");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
@@ -225,9 +225,19 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         getContentPane().add(jBtnIncluirProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 40, -1));
 
         jBtnAlterarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-substituir-24.png"))); // NOI18N
+        jBtnAlterarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAlterarProdActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBtnAlterarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, 40, -1));
 
         jBtnExcluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-remover-23.png"))); // NOI18N
+        jBtnExcluirProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExcluirProdActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBtnExcluirProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, 40, -1));
 
         pack();
@@ -299,10 +309,14 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        VendasDAO vendasDAO = new VendasDAO();
+        if (pesquisano == false){
+            Util.mensagem("Você precisa chamar um usuário antes de excluir");
+        } else{
+            VendasDAO vendasDAO = new VendasDAO();
         if(Util.perguntar("Você deseja excluir?") == true){
            vendasDAO.delete(viewBean());
            Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
+        }
         }  
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -311,6 +325,17 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         Fhf_JDlgVendasProduto dlgVendasProduto = new Fhf_JDlgVendasProduto(null, true);
         dlgVendasProduto.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirProdActionPerformed
+
+    private void jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarProdActionPerformed
+        // TODO add your handling code here:
+        Fhf_JDlgVendasProduto dlgVendasProduto = new Fhf_JDlgVendasProduto(null, true);
+        dlgVendasProduto.setVisible(true);
+    }//GEN-LAST:event_jBtnAlterarProdActionPerformed
+
+    private void jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirProdActionPerformed
+        // TODO add your handling code here:
+        Util.mensagem("Você precisa chamar uma venda antes");
+    }//GEN-LAST:event_jBtnExcluirProdActionPerformed
 
     /**
      * @param args the command line arguments

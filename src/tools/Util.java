@@ -51,13 +51,20 @@ public class Util {
     }
 
     public static boolean perguntar(String cad) {
-            int resp = JOptionPane.showConfirmDialog(null, cad,
+        int resp = JOptionPane.showConfirmDialog(null, cad,
                 "Perguntar", JOptionPane.YES_NO_OPTION);
         return resp == JOptionPane.YES_OPTION;
     }
 
     public static int strToInt(String num) {
-        return Integer.valueOf(num);
+        if (num == null || num.trim().isEmpty()) {
+            return 0;
+        }
+        try {
+            return Integer.parseInt(num.trim());
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     public static String intToStr(int num) {
@@ -73,7 +80,7 @@ public class Util {
         }
     }
 
-    public static String doubleToStr(String num) {
+    public static String doubleToStr(double num) {
         return String.valueOf(num);
     }
 

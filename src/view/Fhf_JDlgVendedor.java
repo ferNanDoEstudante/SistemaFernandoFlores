@@ -51,7 +51,6 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
         jCbxTurno = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTxtSalario = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTxtEndereco = new javax.swing.JTextField();
         jBtnExcluir = new javax.swing.JButton();
@@ -61,6 +60,7 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
         jBtnIncluir = new javax.swing.JButton();
         jBtnAlterar = new javax.swing.JButton();
         jFTxtTelefone = new javax.swing.JFormattedTextField();
+        jTxtSalario = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,6 +145,8 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
+        jTxtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,9 +172,9 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
                             .addComponent(jLabel6)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtSalario)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel7)
+                            .addComponent(jTxtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTxtEndereco)
                             .addGroup(layout.createSequentialGroup()
@@ -219,8 +221,8 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluir)
@@ -252,7 +254,7 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
         jTxtNome.setText(vendedor.getFhfNome());
         jFTxtCPF.setText(vendedor.getFhfCpf());
         jFTxtTelefone.setText(vendedor.getFhfTelefone());
-        jTxtSalario.setText("");
+        jTxtSalario.setText(Util.doubleToStr(vendedor.getFhfSalario()));
         jTxtEndereco.setText(vendedor.getFhfEndereco());
         jCbxTurno.setSelectedIndex(vendedor.getFhfTurno());
     }
@@ -378,6 +380,6 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
     private javax.swing.JTextField jTxtCodigo;
     private javax.swing.JTextField jTxtEndereco;
     private javax.swing.JTextField jTxtNome;
-    private javax.swing.JTextField jTxtSalario;
+    private javax.swing.JFormattedTextField jTxtSalario;
     // End of variables declaration//GEN-END:variables
 }

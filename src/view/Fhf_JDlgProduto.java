@@ -278,7 +278,7 @@ public class Fhf_JDlgProduto extends javax.swing.JDialog {
         jTxtCodigo.setText(Util.intToStr(produto.getFhfIdProduto()));
         jTxtNome.setText(produto.getFhfNome());
         jTxtDescricao.setText(produto.getFhfDescricao());
-        jFmtPreco.setText("");
+        jFmtPreco.setText(Util.doubleToStr(produto.getFhfPreco()));
         jTxtQuantidade.setText(Util.intToStr(produto.getFhfQuantidade()));
         jFTxtDataAdicao.setText(Util.dateToStr(produto.getFhfDataAdicao()));
         jCbxTipo.setSelectedIndex(Util.strToInt(produto.getFhfTipo()));
