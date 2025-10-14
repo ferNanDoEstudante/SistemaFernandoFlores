@@ -4,10 +4,13 @@
  */
 package view;
 
+import bean.FhfClientes;
+import dao.ClientesDAO;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -32,6 +35,11 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         getContentPane().setBackground(new Color(251,250,246));
         Util.habilitar(false, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar);
         
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = (List) clientesDAO.listAll();
+        for (int i = 0; i < lista.size(); i++) {
+            jCboCliente.addItem((FhfClientes) lista.get(i));
+        }
     }
 
     /**
@@ -51,7 +59,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jFmtData = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jCboCliente = new javax.swing.JComboBox<>();
+        jCboCliente = new javax.swing.JComboBox<FhfClientes>();
         jLabel4 = new javax.swing.JLabel();
         jCboVendedor = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -308,7 +316,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnIncluirProd;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JComboBox<String> jCboCliente;
+    private javax.swing.JComboBox<FhfClientes> jCboCliente;
     private javax.swing.JComboBox<String> jCboVendedor;
     private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JLabel jLabel1;

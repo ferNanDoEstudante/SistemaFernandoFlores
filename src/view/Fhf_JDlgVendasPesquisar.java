@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.FhfVendas;
+import dao.VendasDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,6 +20,7 @@ public class Fhf_JDlgVendasPesquisar extends javax.swing.JDialog {
      */
     
     Fhf_JDlgVendas jDlgVendas;
+    FhfControllerVendas controllerVendas;
 
     
     public Fhf_JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
@@ -25,6 +28,11 @@ public class Fhf_JDlgVendasPesquisar extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisando Vendas");
+        controllerVendas = new FhfControllerVendas();
+        VendasDAO vendasDAO = new VendasDAO();
+        List lista = (List) vendasDAO.listAll();
+        controllerVendas.setList(lista);
+        jTable1.setModel(controllerVendas);
     }
 
     public void setTelaPai(Fhf_JDlgVendas jDlgVendas){
@@ -91,6 +99,8 @@ public class Fhf_JDlgVendasPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
 
+        FhfVendas vendas = controllerVendas.getBean(jTable1.getSelectedRow());
+        jDlgVendas.beanView(controllerVendas);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
