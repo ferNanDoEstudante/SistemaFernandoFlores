@@ -193,7 +193,7 @@ public class Fhf_JFrmPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Fhf_JFrmPrincipal().setVisible(true);
+                new Fhf_JFrmLogin().setVisible(true);
             }
         });
     }

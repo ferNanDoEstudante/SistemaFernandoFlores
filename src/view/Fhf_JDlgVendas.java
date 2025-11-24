@@ -50,7 +50,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         VendedorDAO vendedorDAO = new VendedorDAO();
         List lista2 = (List) vendedorDAO.listAll();
         for (int i = 0; i < lista2.size(); i++) {
-            jCboVendedor.addItem((FhfProduto) lista2.get(i));
+            jCboVendedor.addItem((FhfVendedor) lista2.get(i));
         }
         
         fhfcontrollerVendasProdutos = new FhfControllerVendasProdutos();
@@ -96,7 +96,8 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jCboCliente = new javax.swing.JComboBox<FhfClientes>();
         jLabel4 = new javax.swing.JLabel();
-        jCboVendedor = new javax.swing.JComboBox<FhfProduto>();
+        jCboVendedor = new javax.swing.JComboBox<FhfVendedor
+        >();
         jLabel5 = new javax.swing.JLabel();
         jTxtFormaPagamento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -401,7 +402,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
     private javax.swing.JButton jBtnIncluirProd;
     private javax.swing.JButton jBtnPesquisar;
     private javax.swing.JComboBox<FhfClientes> jCboCliente;
-    private javax.swing.JComboBox<FhfProduto> jCboVendedor;
+    private javax.swing.JComboBox<FhfVendedor> jCboVendedor;
     private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
