@@ -45,7 +45,7 @@ public class Fhf_JFrmPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastro");
 
-        jMnUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        jMnUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
         jMnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-usuário-24 (1).png"))); // NOI18N
         jMnUsuarios.setText("Usuários");
         jMnUsuarios.addActionListener(new java.awt.event.ActionListener() {

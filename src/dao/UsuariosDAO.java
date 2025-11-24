@@ -60,4 +60,19 @@ public class UsuariosDAO extends AbstractDAO {
         return lista;
     }
     
+    /**
+     *
+     * @param apelido
+     * @param senha
+     * @return
+     */
+    public FhfUsuarios logar(String apelido, String senha){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FhfUsuarios.class);
+        criteria.add(Restrictions.eq("fhf_apelido", apelido));
+        criteria.add(Restrictions.eq("fhf_senha", senha));
+        FhfUsuarios fhfUsuarios = (FhfUsuarios) criteria.uniqueResult();
+        session.getTransaction().commit();
+        return fhfUsuarios;
+    }
 }
