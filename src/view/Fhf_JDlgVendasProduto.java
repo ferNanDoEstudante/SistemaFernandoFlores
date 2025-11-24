@@ -5,11 +5,19 @@
  */
 package view;
 
+import bean.FhfProduto;
+import bean.FhfVendasproduto;
+import dao.ProdutoDAO;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author User
  */
 public class Fhf_JDlgVendasProduto extends javax.swing.JDialog {
+
+    Fhf_JDlgVendas jDlgVendas;
 
     /**
      * Creates new form Fhf_JDlgVendasProduto
@@ -18,6 +26,18 @@ public class Fhf_JDlgVendasProduto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Venda de Produtos");
+        Util.habilitar(false, jTxtValorUnitario, jTxtTotal);
+        jTxtQuantidade.setText("1");
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        List lista = (List) produtoDAO.listAll();
+        for (Object object : lista) {
+            jCboProduto.addItem((FhfProduto) object);
+        }
+    }
+
+    public void setTelaAnterior(Fhf_JDlgVendas jDlgVendas) {
+        this.jDlgVendas = jDlgVendas;
     }
 
     /**
@@ -29,7 +49,7 @@ public class Fhf_JDlgVendasProduto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCboProduto = new javax.swing.JComboBox<>();
+        jCboProduto = new javax.swing.JComboBox<FhfProduto>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTxtQuantidade = new javax.swing.JTextField();
@@ -42,9 +62,21 @@ public class Fhf_JDlgVendasProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jCboProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCboProdutoActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Produto");
 
         jLabel2.setText("Quantidade");
+
+        jTxtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtQuantidadeKeyReleased(evt);
+            }
+        });
 
         jLabel3.setText("Valor Unitário");
 
@@ -128,6 +160,11 @@ public class Fhf_JDlgVendasProduto extends javax.swing.JDialog {
 
     private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
+        FhfVendasproduto fhfVendasproduto = new FhfVendasproduto();
+        fhfVendasproduto.setFhfProduto((FhfProduto) jCboProduto.getSelectedItem());
+        fhfVendasproduto.setFhfQuantidade(Util.strToInt(jTxtQuantidade.getText()));
+        fhfVendasproduto.setFhfPrecoUnitario(Util.strToDouble(jTxtValorUnitario.getText()));
+        jDlgVendas.fhfcontrollerVendasProdutos.addBean(fhfVendasproduto);
         setVisible(false);
     }//GEN-LAST:event_jBtnOKActionPerformed
 
@@ -135,6 +172,26 @@ public class Fhf_JDlgVendasProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
+
+    private void jCboProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboProdutoActionPerformed
+        // TODO add your handling code here:
+        FhfProduto fhfprodutos = (FhfProduto) jCboProduto.getSelectedItem();
+        jTxtValorUnitario.setText(Util.doubleToStr(fhfprodutos.getFhfPreco()));
+        int quant = Util.strToInt(jTxtQuantidade.getText());
+        jTxtTotal.setText(Util.doubleToStr(quant * fhfprodutos.getFhfPreco()));
+    }//GEN-LAST:event_jCboProdutoActionPerformed
+
+    private void jTxtQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtQuantidadeKeyReleased
+        // TODO add your handling code here:
+        if (jTxtQuantidade.getText().isEmpty() == false) {
+            FhfProduto produtos = (FhfProduto) jCboProduto.getSelectedItem();
+            int quant = Util.strToInt(jTxtQuantidade.getText());
+            jTxtTotal.setText(Util.doubleToStr(quant * produtos.getFhfPreco()));
+        } else {
+            jTxtTotal.setText("");
+        }
+
+    }//GEN-LAST:event_jTxtQuantidadeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -181,7 +238,7 @@ public class Fhf_JDlgVendasProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnOK;
-    private javax.swing.JComboBox<String> jCboProduto;
+    private javax.swing.JComboBox<FhfProduto> jCboProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

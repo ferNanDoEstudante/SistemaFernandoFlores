@@ -215,6 +215,16 @@ public class FhfClientes  implements java.io.Serializable {
     public String toString() {
         return this.fhfNome;
     }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof FhfClientes) {
+            if (this.getFhfIdClientes()== ((FhfClientes) object).getFhfIdClientes()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 

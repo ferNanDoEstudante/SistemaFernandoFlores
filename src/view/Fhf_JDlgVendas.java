@@ -14,6 +14,7 @@ import dao.VendedorDAO;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,7 +27,8 @@ import tools.Util;
  * @author User
  */
 public class Fhf_JDlgVendas extends javax.swing.JDialog {
-
+    
+    FhfControllerVendasProdutos fhfcontrollerVendasProdutos;
     /**
      * Creates new form Fhf_JDlgVendas
      */
@@ -50,6 +52,10 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         for (int i = 0; i < lista2.size(); i++) {
             jCboVendedor.addItem((FhfProduto) lista2.get(i));
         }
+        
+        fhfcontrollerVendasProdutos = new FhfControllerVendasProdutos();
+        fhfcontrollerVendasProdutos.setList(new ArrayList());
+        jTable1.setModel(fhfcontrollerVendasProdutos);
     }
 
     /**
@@ -155,7 +161,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 670, 360));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 670, 280));
 
         jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-selecionado-24.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
@@ -164,7 +170,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
                 jBtnConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
+        getContentPane().add(jBtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-cancelar-24.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
@@ -173,7 +179,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
                 jBtnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, -1, -1));
+        getContentPane().add(jBtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, -1, -1));
 
         jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-pesquisar-24.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
@@ -182,7 +188,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
                 jBtnPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBtnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 460, -1, -1));
+        getContentPane().add(jBtnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, -1, -1));
 
         jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-adicionar-24.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
@@ -196,7 +202,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
                 jBtnIncluirActionPerformed(evt);
             }
         });
-        getContentPane().add(jBtnIncluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, -1, -1));
+        getContentPane().add(jBtnIncluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
 
         jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-substituir-24.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
@@ -205,7 +211,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
                 jBtnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBtnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
+        getContentPane().add(jBtnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, -1, -1));
 
         jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-remover-23.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
@@ -214,7 +220,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
                 jBtnExcluirActionPerformed(evt);
             }
         });
-        getContentPane().add(jBtnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, -1, -1));
+        getContentPane().add(jBtnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
 
         jBtnIncluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-adicionar-24.png"))); // NOI18N
         jBtnIncluirProd.addActionListener(new java.awt.event.ActionListener() {
@@ -322,8 +328,9 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
-        Fhf_JDlgVendasProduto dlgVendasProduto = new Fhf_JDlgVendasProduto(null, true);
-        dlgVendasProduto.setVisible(true);
+        Fhf_JDlgVendasProduto jDlgVendasProduto = new Fhf_JDlgVendasProduto(null, true);
+        jDlgVendasProduto.setTelaAnterior(this);
+        jDlgVendasProduto.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirProdActionPerformed
 
     private void jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarProdActionPerformed
@@ -334,7 +341,10 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirProdActionPerformed
         // TODO add your handling code here:
-        Util.mensagem("Você precisa chamar uma venda antes");
+        if (Util.perguntar("Deseja excluir o produto ?") == true) {
+            int ind = jTable1.getSelectedRow();
+            fhfcontrollerVendasProdutos.removeBean(ind);
+        }
     }//GEN-LAST:event_jBtnExcluirProdActionPerformed
 
     /**

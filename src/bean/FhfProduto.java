@@ -114,7 +114,21 @@ public class FhfProduto  implements java.io.Serializable {
     public void setFhfDataAdicao(Date fhfDataAdicao) {
         this.fhfDataAdicao = fhfDataAdicao;
     }
-
+    
+    @Override
+    public String toString() {
+        return this.fhfNome;
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof FhfProduto) {
+            if (this.getFhfIdProduto()== ((FhfProduto) object).getFhfIdProduto()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 

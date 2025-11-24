@@ -115,6 +115,15 @@ public class FhfVendedor implements java.io.Serializable {
     public String toString() {
         return this.fhfNome;
     }
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof FhfVendedor) {
+            if (this.getFhfIdVendedor()== ((FhfVendedor) object).getFhfIdVendedor()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 
