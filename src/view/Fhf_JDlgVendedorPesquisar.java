@@ -8,6 +8,7 @@ import bean.FhfVendedor;
 import dao.VendedorDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
+import tools.Util;
 
 /**
  *
@@ -63,6 +64,11 @@ public class Fhf_JDlgVendedorPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jBtnOk.setText("OK");
@@ -85,8 +91,8 @@ public class Fhf_JDlgVendedorPesquisar extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtnOk)
                 .addContainerGap())
         );
@@ -98,10 +104,21 @@ public class Fhf_JDlgVendedorPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
 
-        FhfVendedor vendedor = controllerVendedor.getBean(jTable1.getSelectedRow());
-        jDlgVendedor.beanView(vendedor);
-        setVisible(false);
+        if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Nenhuma linha selecionada.");
+        } else {
+            FhfVendedor fhfVendedor = controllerVendedor.getBean(jTable1.getSelectedRow());
+            jDlgVendedor.beanView(fhfVendedor);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            jBtnOkActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

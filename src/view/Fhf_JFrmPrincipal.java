@@ -45,7 +45,7 @@ public class Fhf_JFrmPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastro");
 
-        jMnUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        jMnUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         jMnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-usuário-24 (1).png"))); // NOI18N
         jMnUsuarios.setText("Usuários");
         jMnUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +86,7 @@ public class Fhf_JFrmPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMnVendedor);
         jMenu1.add(jSeparator1);
 
-        jMnSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
+        jMnSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-sair-24.png"))); // NOI18N
         jMnSair.setText("Sair");
         jMnSair.addActionListener(new java.awt.event.ActionListener() {

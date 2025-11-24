@@ -9,6 +9,7 @@ import bean.FhfProduto;
 import dao.ProdutoDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
+import tools.Util;
 
 /**
  *
@@ -64,6 +65,11 @@ public class Fhf_JDlgProdutoPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jBtnOk.setText("OK");
@@ -97,10 +103,21 @@ public class Fhf_JDlgProdutoPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
 
-        FhfProduto produto = controllerProduto.getBean(jTable1.getSelectedRow());
-        jDlgProduto.beanView(produto);
-        setVisible(false);
+        if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Nenhuma linha selecionada.");
+        } else {
+            FhfProduto fhfProduto = controllerProduto.getBean(jTable1.getSelectedRow());
+            jDlgProduto.beanView(fhfProduto);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            jBtnOkActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
