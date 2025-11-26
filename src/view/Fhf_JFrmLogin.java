@@ -112,16 +112,9 @@ public class Fhf_JFrmLogin extends javax.swing.JFrame {
 // TODO add your handling code here:
         UsuariosDAO dao = new UsuariosDAO();
         String apelido = jTxtApelido.getText();
-        String senha = String.valueOf(jPwfSenha.getText());
-        List<FhfUsuarios> lista = (List<FhfUsuarios>) dao.listAll();
-        boolean logado = false;
-        for (FhfUsuarios u : lista) {
-            if (u.getFhfApelido().equals(apelido) && u.getFhfSenha().equals(senha)) {
-                logado = true;
-                break;
-            }
-        }
-        if (logado) {
+        String senha = jPwfSenha.getText();
+    
+        if (senha == dao.senha(senha) && apelido == dao.apelido(apelido)) {
             Util.mensagem("Logado com Sucesso");
             new Fhf_JFrmPrincipal().setVisible(true);
             this.dispose();

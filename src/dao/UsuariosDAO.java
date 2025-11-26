@@ -60,5 +60,20 @@ public class UsuariosDAO extends AbstractDAO {
         return lista;
     }
     
-    
+    public Object apelido(String apelido) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FhfUsuarios.class);
+        criteria.add(Restrictions.eq("fhf_apelido", apelido) );
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    public Object senha(String senha) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FhfUsuarios.class);
+        criteria.add(Restrictions.eq("fhf_senha", senha) );
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
 }
