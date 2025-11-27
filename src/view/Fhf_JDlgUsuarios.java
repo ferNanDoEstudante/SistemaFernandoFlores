@@ -124,7 +124,7 @@ public class Fhf_JDlgUsuarios extends javax.swing.JDialog {
 
         jLabel8.setText("Nível");
 
-        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "administrador", "funcionario", "vendedor", "gerente" }));
+        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "usuário simples", "funcionário", "vendedor", "administrados" }));
         jCboNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCboNivelActionPerformed(evt);

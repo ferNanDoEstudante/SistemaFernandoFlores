@@ -43,7 +43,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         setTitle("Cadastro de Vendas");
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(251, 250, 246));
-        Util.habilitar(false, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
 
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
@@ -84,6 +84,9 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         jCboVendedor.setSelectedItem(vendas.getFhfVendedor());
         jTxtFormaPagamento.setText(vendas.getFhfFormaPagamento());
         jTxtTotal.setText(Util.doubleToStr(vendas.getFhfTotal()));
+        VendasProdutoDAO vendasProdutoDAO = new VendasProdutoDAO();
+        List lista = (List) vendasProdutoDAO.listProduto(vendas);
+        fhfcontrollerVendasProdutos.setList(lista);
     }
 
     @SuppressWarnings("unchecked")
@@ -261,8 +264,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (jTxtCodigo.getText().equals("")
                 || jFmtData.getText().contains(" ")
-                || jTxtFormaPagamento.getText().equals("")
-                || jTxtTotal.getText().equals("")) {
+                || jTxtFormaPagamento.getText().equals("")) {
 
             Util.mensagem("Todos os campos devem ser preenchidos corretamente.");
             return;
@@ -285,7 +287,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
                 vendasProdutoDAO.update(vendasproduto);
 
             }
-            Util.habilitar(false, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar);
+            Util.habilitar(false,  jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
             Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
             Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
         }
@@ -293,7 +295,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false,  jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
@@ -313,7 +315,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true,  jTxtCodigo, jTxtFormaPagamento, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
         incluir = true;
@@ -325,7 +327,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         if (pesquisano == false) {
             Util.mensagem("Você precisa pesquisar um usuário antes");
         } else {
-            Util.habilitar(true, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar);
+            Util.habilitar(true,  jTxtFormaPagamento, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
             Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
             Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
             incluir = false;

@@ -56,7 +56,7 @@ public class FhfVendas implements java.io.Serializable {
         this.fhfIdVendas = fhfIdVendas;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="fhf_fkClientes")
     public FhfClientes getFhfClientes() {
         return this.fhfClientes;
@@ -66,7 +66,7 @@ public class FhfVendas implements java.io.Serializable {
         this.fhfClientes = fhfClientes;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="fhf_fkVendedor")
     public FhfVendedor getFhfVendedor() {
         return this.fhfVendedor;
