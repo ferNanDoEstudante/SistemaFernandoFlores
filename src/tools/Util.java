@@ -73,11 +73,11 @@ public class Util {
 
     public static double strToDouble(String cad) {
         try {
-        return Double.parseDouble(cad.replace(",", ".").trim());
-    } catch (NumberFormatException e) {
-        Util.mensagem("Valor inválido: " + cad);
-        return 0.0;
-    }
+            return Double.parseDouble(cad.replace(",", ".").trim());
+        } catch (NumberFormatException e) {
+            Util.mensagem("Erro");
+            return 0.0;
+        }
     }
 
     public static String doubleToStr(double num) {
