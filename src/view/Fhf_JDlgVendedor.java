@@ -60,7 +60,7 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
         jBtnIncluir = new javax.swing.JButton();
         jBtnAlterar = new javax.swing.JButton();
         jFTxtTelefone = new javax.swing.JFormattedTextField();
-        jTxtSalario = new javax.swing.JFormattedTextField();
+        jTxtSalario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,8 +145,6 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        jTxtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,13 +171,11 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(jTxtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTxtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtEndereco)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jTxtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -380,6 +376,6 @@ public class Fhf_JDlgVendedor extends javax.swing.JDialog {
     private javax.swing.JTextField jTxtCodigo;
     private javax.swing.JTextField jTxtEndereco;
     private javax.swing.JTextField jTxtNome;
-    private javax.swing.JFormattedTextField jTxtSalario;
+    private javax.swing.JTextField jTxtSalario;
     // End of variables declaration//GEN-END:variables
 }

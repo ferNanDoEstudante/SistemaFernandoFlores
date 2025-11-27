@@ -19,6 +19,7 @@ public class Fhf_JFrmLogin extends javax.swing.JFrame {
 
     FhfUsuarios FhfUsuarios;
     Fhf_JFrmLogin fhf_JFrmLogin;
+    private int tentativas;
 
     /**
      * Creates new form Fhf_JFrmLogin
@@ -113,13 +114,20 @@ public class Fhf_JFrmLogin extends javax.swing.JFrame {
         UsuariosDAO dao = new UsuariosDAO();
         String apelido = jTxtApelido.getText();
         String senha = jPwfSenha.getText();
-    
-        if (senha == dao.senha(senha) && apelido == dao.apelido(apelido)) {
-            Util.mensagem("Logado com Sucesso");
-            new Fhf_JFrmPrincipal().setVisible(true);
+
+        if (tentativas == 3) {
+            Util.mensagem("Multiplas tentativas, tentar novamente mais tarde");
             this.dispose();
         } else {
-            Util.mensagem("Usuário ou senha incorretos");
+            if (dao.logar(apelido, senha)) {
+                Util.mensagem("Logado com Sucesso");
+                new Fhf_JFrmPrincipal().setVisible(true);
+                this.dispose();
+            } else {
+                Util.mensagem("Usuário ou senha incorretos. Tentativas restantes: " + (3 - tentativas));
+                Util.limpar(jTxtApelido, jPwfSenha);
+                tentativas++;
+            }
         }
     }//GEN-LAST:event_jBtnLogarActionPerformed
 

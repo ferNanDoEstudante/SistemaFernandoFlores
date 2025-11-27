@@ -148,6 +148,12 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
         jLabel6.setText("Total");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
+
+        jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTotalActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTxtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 100, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -360,6 +366,10 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
             fhfcontrollerVendasProdutos.removeBean(ind);
         }
     }//GEN-LAST:event_jBtnExcluirProdActionPerformed
+
+    private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtTotalActionPerformed
 
     /**
      * @param args the command line arguments

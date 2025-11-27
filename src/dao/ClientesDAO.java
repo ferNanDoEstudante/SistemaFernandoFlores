@@ -45,7 +45,7 @@ public class ClientesDAO extends AbstractDAO {
     public Object list(int codigo) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(FhfClientes.class);
-        criteria.add(Restrictions.eq("fhf_idClientes", codigo) );
+        criteria.add(Restrictions.eq("fhfIdClientes", codigo) );
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
