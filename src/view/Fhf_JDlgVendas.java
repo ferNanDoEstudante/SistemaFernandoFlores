@@ -281,21 +281,21 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
             }
         } else {
             vendasDAO.update(viewBean());
+            vendasProdutoDAO.deleteVendas(fhfVendas);
             for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
                 FhfVendasproduto vendasproduto = fhfcontrollerVendasProdutos.getBean(ind);
                 vendasproduto.setFhfVendas(fhfVendas);
                 vendasProdutoDAO.update(vendasproduto);
-
             }
-            Util.habilitar(false,  jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
-            Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-            Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
         }
+        Util.habilitar(false, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false,  jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(false, jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
@@ -315,7 +315,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true,  jTxtCodigo, jTxtFormaPagamento, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(true, jTxtCodigo, jTxtFormaPagamento, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
         incluir = true;
@@ -327,7 +327,7 @@ public class Fhf_JDlgVendas extends javax.swing.JDialog {
         if (pesquisano == false) {
             Util.mensagem("Você precisa pesquisar um usuário antes");
         } else {
-            Util.habilitar(true,  jTxtFormaPagamento, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+            Util.habilitar(true, jTxtFormaPagamento, jCboCliente, jCboVendedor, jFmtData, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
             Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
             Util.limpar(jTxtCodigo, jTxtFormaPagamento, jTxtTotal, jCboCliente, jCboVendedor, jFmtData);
             incluir = false;

@@ -84,22 +84,20 @@ public class Util {
         return String.valueOf(num);
     }
 
-    public static Date strToDate(String data) {
-        SimpleDateFormat datando = new SimpleDateFormat("dd/MM/yyyy");
-        datando.setLenient(false);
+       public static Date strToDate(String data) {
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/YYYY");
         try {
-            return datando.parse(data);
+            return fm.parse(data);
         } catch (ParseException ex) {
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return null;
     }
 
     public static String dateToStr(Date data) {
-        if (data == null) {
-            return "";
-        }
-        SimpleDateFormat datando = new SimpleDateFormat("dd/MM/yyyy");
-        return datando.format(data);
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/YYYY");
+        return fm.format(data);
+        
     }
 }
